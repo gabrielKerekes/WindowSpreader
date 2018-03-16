@@ -8,7 +8,16 @@ namespace WindowSpreader.UI.ViewModel
     // todo: should cache selected items somehow
     public class WindowListViewModel : ViewModel
     {
-        public ObservableCollection<WindowModel> Windows { get; set; }
+        private ObservableCollection<WindowModel> windows;
+        public ObservableCollection<WindowModel> Windows
+        {
+            get => windows;
+            set
+            {
+                windows = value; 
+                OnPropertyChanged();
+            }
+        }
 
         public WindowListViewModel()
         {
@@ -17,7 +26,9 @@ namespace WindowSpreader.UI.ViewModel
 
         public void Refresh()
         {
-            var wsWindows = WSWindows.GetAllWindows();
+            //var wsWindows = WSWindows.GetAllWindows();
+            var wsw = new WSWindows();
+            var wsWindows = wsw.GetAllWindows();
             var windowModels = wsWindows.Select(WindowModel.FromWSWindow);
 
             Windows = new ObservableCollection<WindowModel>(windowModels);

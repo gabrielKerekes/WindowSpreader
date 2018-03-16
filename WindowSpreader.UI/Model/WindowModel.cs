@@ -9,10 +9,10 @@ namespace WindowSpreader.UI.Model
     {
         public const bool DefaultIsSelected = false;
 
+        public bool IsSelected { get; set; }
+        public string Name { get; set; }
         // todo: handle just for testing purposes, can be removed later
         public IntPtr Handle { get; set; }
-        public string Name { get; set; }
-        public bool IsSelected { get; set; }
 
         public WSWindow ToWSWindow()
         {

@@ -7,6 +7,7 @@ namespace WindowSpreader.UI.ViewModel
     public class MainWindowViewModel : ViewModel
     {
         public RelayCommand SpreadCommand { get; set; }
+        public RelayCommand RefreshCommand { get; set; }
 
         private WindowListViewModel windowListViewModel;
         public WindowListViewModel WindowListViewModel
@@ -24,6 +25,7 @@ namespace WindowSpreader.UI.ViewModel
             WindowListViewModel = new WindowListViewModel();
 
             SpreadCommand = new RelayCommand(CanSpread, Spread);
+            RefreshCommand = new RelayCommand(Refresh);
         }
 
         public bool CanSpread(object obj)
@@ -37,6 +39,11 @@ namespace WindowSpreader.UI.ViewModel
             var wsWindowsToSpread = windowsToSpread.Select(w => w.ToWSWindow());
 
             WSSpreader.SpreadWindows(wsWindowsToSpread);
+        }
+
+        public void Refresh(object obj)
+        {
+            WindowListViewModel.Refresh();
         }
     }
 }

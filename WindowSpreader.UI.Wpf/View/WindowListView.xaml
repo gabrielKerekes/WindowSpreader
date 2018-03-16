@@ -14,7 +14,7 @@
         <ListView
             ItemsSource="{Binding Windows}">
             <ListView.View>
-                <!-- todo: maybe this should be done differently with WindowListItem or smth -->
+                 <!-- todo: maybe this should be done differently with WindowListItem or smth -->
                 <GridView>
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>

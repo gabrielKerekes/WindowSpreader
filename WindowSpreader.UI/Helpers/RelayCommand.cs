@@ -9,6 +9,11 @@ namespace WindowSpreader.UI.Helpers
         private Predicate<object> canExecute;
         private Action<object> execute;
 
+        public RelayCommand(Action<object> execute)
+        {
+            this.execute = execute;
+        }
+
         public RelayCommand(Predicate<object> canExecute, Action<object> execute)
         {
             this.canExecute = canExecute;
@@ -23,12 +28,12 @@ namespace WindowSpreader.UI.Helpers
 
         public bool CanExecute(object parameter)
         {
-            return canExecute(parameter);
+            return canExecute == null || canExecute(parameter);
         }
 
         public void Execute(object parameter)
         {
-            execute(parameter);
+            execute?.Invoke(parameter);
         }
     }
 }
